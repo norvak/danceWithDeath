@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dance_with_death_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dance_with_death}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-dance_with_death}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dance_with_death_network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: dance_with_death_backend
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./backend:/var/www
+      - backend_vendor:/var/www/vendor
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - dance_with_death_network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: dance_with_death_frontend
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      NUXT_PUBLIC_API_BASE_URL: ${NUXT_PUBLIC_API_BASE_URL:-http://localhost:8000/api}
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - dance_with_death_network
+
+networks:
+  dance_with_death_network:
+    name: dance_with_death_network
+    driver: bridge
+
+volumes:
+  postgres_data:
+    name: dance_with_death_postgres_data
+  backend_vendor:
+    name: dance_with_death_backend_vendor
+  frontend_node_modules:
+    name: dance_with_death_frontend_node_modules
