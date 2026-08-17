@@ -24,8 +24,6 @@ Antes de comenzar, instala:
 - Docker Compose v2, incluido con Docker Desktop.
 - Git.
 
-Las imágenes utilizadas son compatibles con Apple Silicon y equipos x86-64.
-
 ## Estructura
 
 ```text
