@@ -93,11 +93,11 @@ Los tres servicios deben aparecer activos y PostgreSQL debe mostrar el estado `h
 
 ## Servicios Docker
 
-| Servicio | Contenedor | Puerto local | Función |
-| --- | --- | --- | --- |
-| `frontend` | `dance_with_death_frontend` | `3000` | Servidor de desarrollo Nuxt |
-| `backend` | `dance_with_death_backend` | `8000` | API de Laravel |
-| `postgres` | `dance_with_death_postgres` | `5432` | Base de datos PostgreSQL |
+| Servicio   | Contenedor                  | Puerto local | Función                     |
+| ---------- | --------------------------- | ------------ | --------------------------- |
+| `frontend` | `dance_with_death_frontend` | `3000`       | Servidor de desarrollo Nuxt |
+| `backend`  | `dance_with_death_backend`  | `8000`       | API de Laravel              |
+| `postgres` | `dance_with_death_postgres` | `5432`       | Base de datos PostgreSQL    |
 
 PostgreSQL, las dependencias de Composer y las dependencias de npm utilizan volúmenes Docker independientes.
 
@@ -233,7 +233,7 @@ Comprueba la compilación de producción del frontend:
 docker compose exec frontend npm run build
 ```
 
-## Migraciones
+## Migraciones de la base de datos
 
 Ejecutar migraciones pendientes:
 
