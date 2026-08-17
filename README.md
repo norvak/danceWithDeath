@@ -24,8 +24,6 @@ Antes de comenzar, instala:
 - Docker Compose v2, incluido con Docker Desktop.
 - Git.
 
-Las imágenes utilizadas son compatibles con Apple Silicon y equipos x86-64.
-
 ## Estructura
 
 ```text
@@ -93,11 +91,11 @@ Los tres servicios deben aparecer activos y PostgreSQL debe mostrar el estado `h
 
 ## Servicios Docker
 
-| Servicio | Contenedor | Puerto local | Función |
-| --- | --- | --- | --- |
-| `frontend` | `dance_with_death_frontend` | `3000` | Servidor de desarrollo Nuxt |
-| `backend` | `dance_with_death_backend` | `8000` | API de Laravel |
-| `postgres` | `dance_with_death_postgres` | `5432` | Base de datos PostgreSQL |
+| Servicio   | Contenedor                  | Puerto local | Función                     |
+| ---------- | --------------------------- | ------------ | --------------------------- |
+| `frontend` | `dance_with_death_frontend` | `3000`       | Servidor de desarrollo Nuxt |
+| `backend`  | `dance_with_death_backend`  | `8000`       | API de Laravel              |
+| `postgres` | `dance_with_death_postgres` | `5432`       | Base de datos PostgreSQL    |
 
 PostgreSQL, las dependencias de Composer y las dependencias de npm utilizan volúmenes Docker independientes.
 
