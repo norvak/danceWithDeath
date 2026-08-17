@@ -4,7 +4,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'Dance with Death'
+      title: 'Dance with Death — Book an Appointment',
+      meta: [
+        {
+          name: 'description',
+          content: 'Choose a weekday and reserve an hour to dance with death.'
+        }
+      ]
     }
   },
   runtimeConfig: {
